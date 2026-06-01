@@ -14,6 +14,29 @@
 
 这个工具用 Playwright 模拟浏览器访问，拦截页面渲染时调用的内部 API，直接从 HTTP 响应中提取原始逐字稿数据。
 
+### 为什么这个项目对 AI 生态系统很重要？
+
+在 AI 驱动的开发工作流中，**上下文就是一切**。飞书妙记承载着团队最核心的知识资产——会议讨论、决策过程、技术方案评审。但这个知识孤岛一直与 AI 工具链割裂：
+
+- **Codex / Claude Code 等 AI 编程助手**：需要项目上下文来生成精准代码，但无法感知团队在飞书会议中讨论过的架构决策、需求变更、bug 根因分析
+- **ChatGPT / GPT 自定义 Agent**：擅长分析和总结，但缺少结构化的会议语料输入——逐字稿是最原始、最完整的知识载体
+- **RAG 知识库**：需要持续摄入高质量的团队对话数据来保持时效性，但飞书官方 API 的导出限制让自动化管道中断
+
+这个工具填补了飞书生态与 AI 工具链之间的最后一公里：
+
+```
+飞书妙记 → [本工具] → 结构化逐字稿 → Codex 上下文 / ChatGPT 分析 / RAG 入库
+```
+
+实际应用场景：
+
+- **喂给 Codex / Claude Code**：将会议中讨论的技术方案作为 prompt context，让 AI 写出的代码更贴合团队真实意图
+- **接入 ChatGPT GPTs**：搭建自定义 Agent，自动对每场会议生成执行摘要、技术债务清单、需求跟踪矩阵
+- **构建 RAG 管道**：把逐字稿切片向量化后存入知识库，让后续的 AI 对话能回溯历史讨论，避免重复沟通
+- **MCP Server 集成**：将此工具封装为 MCP 工具，让 Claude Code 等客户端在编程过程中直接拉取相关会议记录作为上下文
+
+**核心价值：把飞书会议的知识沉淀打通到整个 AI 工具链，让 ChatGPT、Codex、RAG 系统都能消费团队的真实对话数据，实现跨工具的 AI 效率提升。**
+
 ### 安装
 
 ```bash
@@ -92,6 +115,29 @@ Extract complete transcripts from Feishu Minutes (飞书妙记) web pages — by
 Feishu's official API (`/vc +notes`) returns **HTTP 403** when the minute creator has disabled export (`export_options.enable = false`). However, users **can still view the transcript** in their browser, meaning the data exists on Feishu's servers — the API permission layer is the only barrier.
 
 This tool uses Playwright to simulate a browser session, intercepts the internal APIs called during page rendering, and extracts raw transcript data directly from HTTP responses.
+
+### Why this matters to the AI ecosystem
+
+In AI-driven development workflows, **context is everything**. Feishu Minutes holds a team's most critical knowledge assets — meeting discussions, architectural decisions, technical reviews. But this knowledge silo has been disconnected from the AI toolchain:
+
+- **Codex / Claude Code**: Need project context to generate precise code, but can't access architectural decisions, requirement changes, or root-cause analyses discussed in Feishu meetings
+- **ChatGPT / Custom GPT Agents**: Excel at summarization but lack structured meeting corpus input — raw transcripts are the richest knowledge carrier
+- **RAG pipelines**: Require continuous ingestion of high-quality team conversations, but Feishu's official API export restrictions break automation
+
+This tool bridges the last mile between the Feishu ecosystem and the AI toolchain:
+
+```
+Feishu Minutes → [this tool] → Structured Transcript → Codex Context / ChatGPT Analysis / RAG Ingestion
+```
+
+Real-world workflows:
+
+- **Feed into Codex / Claude Code**: Use meeting technical discussions as prompt context so AI-generated code aligns with the team's actual intent
+- **Power ChatGPT GPTs**: Build custom agents that auto-generate executive summaries, tech-debt lists, and requirement traceability matrices from every meeting
+- **Build RAG pipelines**: Chunk and vectorize transcripts for knowledge bases, enabling AI to reference historical discussions and eliminate redundant communication
+- **MCP Server integration**: Wrap this tool as an MCP tool so Claude Code and other clients can pull relevant meeting context during coding sessions
+
+**Core value: Unlock Feishu meeting knowledge for the entire AI toolchain. Let ChatGPT, Codex, and RAG systems consume real team conversation data — driving cross-tool AI efficiency.**
 
 ### Install
 
