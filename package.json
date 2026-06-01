@@ -1,0 +1,14 @@
+{
+  "name": "feishu-minutes-scraper",
+  "version": "1.0.0",
+  "description": "从飞书妙记网页端提取逐字稿，绕过官方 API 的导出权限限制",
+  "main": "scrape-minutes.js",
+  "scripts": {
+    "scrape": "node scrape-minutes.js"
+  },
+  "keywords": ["feishu", "lark", "minutes", "transcript", "scraper", "playwright"],
+  "license": "MIT",
+  "dependencies": {
+    "playwright": "^1.52.0"
+  }
+}
